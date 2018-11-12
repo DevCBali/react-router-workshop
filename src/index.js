@@ -1,24 +1,35 @@
-import React, { Fragment } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import ProductList from "./pages/ProductList";
-import Cart from "./pages/Cart";
+import React, { Fragment, Suspense, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// import * as serviceWorker from "./serviceWorker";
+import { LocaleContext } from './contexts';
 
-const AppRouter = () => (
-  <Router>
-    <Fragment>
-      <Route path="/" exact component={ProductList} />
-      <Route path="/products/" component={ProductList} />
-      <Route path="/cart/" component={Cart} />
-    </Fragment>
-  </Router>
-);
+function LazyImport(Component) {
+  const ComponentLoadable = React.lazy(Component);
+  return props => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ComponentLoadable {...props} />
+    </Suspense>
+  );
+}
 
-ReactDOM.render(<AppRouter />, document.getElementById("root"));
+const ProductList = LazyImport(() => import('./pages/ProductList'));
+const Product = LazyImport(() => import('./pages/Product'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+function AppRouter() {
+  const [locale, setLocale] = useState('en');
+
+  return (
+    <LocaleContext.Provider value={{ locale, setLocale }}>
+      <Router>
+        <Fragment>
+          <Route path="/" exact component={ProductList} />
+          <Route path="/products/" component={ProductList} />
+          <Route path="/product/:product" component={Product} />
+        </Fragment>
+      </Router>
+    </LocaleContext.Provider>
+  );
+}
+
+ReactDOM.render(<AppRouter />, document.getElementById('root'));

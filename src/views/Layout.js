@@ -1,18 +1,26 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import LocaleSelect from './LocaleSelect';
+import { LocaleContext } from '../contexts';
+import trans from '../trans';
 
 export default function Layout({ children }) {
+  const { locale } = useContext(LocaleContext);
   return (
     <div className="container">
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
+          <Link className="navbar-item" to="/">
             <img
               src="https://bulma.io/images/bulma-logo.png"
               alt="Bulma: a modern CSS framework based on Flexbox"
               width={112}
               height={28}
             />
-          </a>
+          </Link>
           <a
             role="button"
             className="navbar-burger"
@@ -25,7 +33,8 @@ export default function Layout({ children }) {
           </a>
         </div>
         <div className="navbar-end">
-          <a className="navbar-item">Home</a>
+          <a className="navbar-item">{trans[locale]['Home']}</a>
+          <LocaleSelect />
         </div>
       </nav>
       {children}

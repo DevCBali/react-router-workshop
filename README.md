@@ -14,13 +14,17 @@ Workshop React Router & React Context
 6. Code Splitting dengan React.lazy (Bonus)
 
 ## Yang perlu disiapkan
+
 - Instalasi NodeJS dan NPM [Download](https://nodejs.org/en/)
 - Instalasi package NPM global Create-React-App [Website](https://facebook.github.io/create-react-app/)
+
 ```
 npm install -g create-react-app
 ```
+
 - Browser modern (Chrome, Firefox, Safari, etc)
 
 ## Spesifikasi
-- React 16.7
+
+- React 16.6
 - React-Router-Dom v4.x

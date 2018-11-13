@@ -28,7 +28,7 @@ export default function ProductList() {
                           <div className="media-content">
                             <p className="title is-4">{product.title}</p>
                             <div className="content">
-                              aman
+                              {product.description}
                               <br />
                             </div>
                             <h5>{product.price}</h5>

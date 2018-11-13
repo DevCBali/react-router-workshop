@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, useState } from 'react';
+import React, { Fragment, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -16,20 +16,29 @@ function LazyImport(Component) {
 const ProductList = LazyImport(() => import('./pages/ProductList'));
 const Product = LazyImport(() => import('./pages/Product'));
 
-function AppRouter() {
-  const [locale, setLocale] = useState('en');
+class AppRouter extends React.Component {
+  state = {
+    locale: 'en'
+  };
 
-  return (
-    <LocaleContext.Provider value={{ locale, setLocale }}>
-      <Router>
-        <Fragment>
-          <Route path="/" exact component={ProductList} />
-          <Route path="/products/" component={ProductList} />
-          <Route path="/product/:product" component={Product} />
-        </Fragment>
-      </Router>
-    </LocaleContext.Provider>
-  );
+  handleSetLocale = locale => this.setState({ locale });
+
+  render() {
+    const { locale } = this.state;
+    return (
+      <LocaleContext.Provider
+        value={{ locale, setLocale: this.handleSetLocale }}
+      >
+        <Router>
+          <Fragment>
+            <Route path="/" exact component={ProductList} />
+            <Route path="/products/" component={ProductList} />
+            <Route path="/product/:product" component={Product} />
+          </Fragment>
+        </Router>
+      </LocaleContext.Provider>
+    );
+  }
 }
 
 ReactDOM.render(<AppRouter />, document.getElementById('root'));

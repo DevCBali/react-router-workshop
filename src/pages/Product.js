@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Layout from '../views/Layout';
@@ -9,7 +9,6 @@ import trans from '../trans';
 import products from '../products';
 
 export default function Product({ match }) {
-  const { locale } = useContext(LocaleContext);
   const product = products.find(
     product => product.slug === match.params.product
   );
@@ -38,10 +37,16 @@ export default function Product({ match }) {
             <img alt={product.title} src={product.imageUrl} />
           </figure>
         </div>
-        <div className="column is-5">
-          <div>{product.price}</div>
-          <a className="button is-primary">{trans[locale]['Add to Cart']}</a>
-        </div>
+        <LocaleContext.Consumer>
+          {({ locale }) => (
+            <div className="column is-5">
+              <div>{product.price}</div>
+              <a className="button is-primary">
+                {trans[locale]['Add to Cart']}
+              </a>
+            </div>
+          )}
+        </LocaleContext.Consumer>
       </div>
     </Layout>
   );

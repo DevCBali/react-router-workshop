@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import LocaleSelect from './LocaleSelect';
@@ -8,7 +8,6 @@ import { LocaleContext } from '../contexts';
 import trans from '../trans';
 
 export default function Layout({ children }) {
-  const { locale } = useContext(LocaleContext);
   return (
     <div className="container">
       <nav className="navbar" aria-label="main navigation">
@@ -32,10 +31,14 @@ export default function Layout({ children }) {
             <span aria-hidden="true" />
           </a>
         </div>
-        <div className="navbar-end">
-          <a className="navbar-item">{trans[locale]['Home']}</a>
-          <LocaleSelect />
-        </div>
+        <LocaleContext.Consumer>
+          {({ locale }) => (
+            <div className="navbar-end">
+              <a className="navbar-item">{trans[locale]['Home']}</a>
+              <LocaleSelect />
+            </div>
+          )}
+        </LocaleContext.Consumer>
       </nav>
       {children}
     </div>

@@ -2,7 +2,7 @@
 
 Workshop React Router & React Context
 
-- [Demo](hhttps://devcbali-react-router-workshop.netlify.com/)
+- [Demo](https://devcbali-react-router-workshop.netlify.com/)
 
 ## Yang akan dipelajari
 

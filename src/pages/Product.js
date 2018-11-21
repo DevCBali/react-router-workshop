@@ -8,9 +8,9 @@ import { LocaleContext } from '../contexts';
 import trans from '../trans';
 import products from '../products';
 
-export default function Product({ match }) {
+export default function Product(props) {
   const product = products.find(
-    product => product.slug === match.params.product
+    product => product.slug === props.match.params.product
   );
   return (
     <Layout>
@@ -40,10 +40,15 @@ export default function Product({ match }) {
         <LocaleContext.Consumer>
           {({ locale }) => (
             <div className="column is-5">
-              <div>{product.price}</div>
-              <a className="button is-primary">
-                {trans[locale]['Add to Cart']}
-              </a>
+              <div className="column has-text-weight-semibold has-text-dark is-size-4">
+                {product.price}
+              </div>
+              <div className="column">{product.description}</div>
+              <div className="column">
+                <a className="button is-primary is-uppercase">
+                  {trans[locale]['Add to Cart']}
+                </a>
+              </div>
             </div>
           )}
         </LocaleContext.Consumer>

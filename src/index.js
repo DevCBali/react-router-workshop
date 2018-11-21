@@ -1,13 +1,22 @@
 import React, { Fragment, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import { LocaleContext } from './contexts';
 
+/**
+ * Code Splitting using React.lazy and Suspense
+ */
 function LazyImport(Component) {
   const ComponentLoadable = React.lazy(Component);
   return props => (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="container">
+          <div>Loading...</div>
+        </div>
+      }
+    >
       <ComponentLoadable {...props} />
     </Suspense>
   );
@@ -29,13 +38,13 @@ class AppRouter extends React.Component {
       <LocaleContext.Provider
         value={{ locale, setLocale: this.handleSetLocale }}
       >
-        <Router>
+        <BrowserRouter>
           <Fragment>
             <Route path="/" exact component={ProductList} />
             <Route path="/products/" component={ProductList} />
             <Route path="/product/:product" component={Product} />
           </Fragment>
-        </Router>
+        </BrowserRouter>
       </LocaleContext.Provider>
     );
   }

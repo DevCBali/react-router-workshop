@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Layout from '../views/Layout';
+import Layout from '../components/Layout';
 import products from '../products';
 
 export default function ProductList() {

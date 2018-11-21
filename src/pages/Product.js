@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Layout from '../views/Layout';
+import Layout from '../components/Layout';
 import { LocaleContext } from '../contexts';
 import trans from '../trans';
 import products from '../products';

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Product List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/"
+            ><img
+              src="https://bulma.io/images/bulma-logo.png"
+              alt="Bulma: a modern CSS framework based on Flexbox"
+              width="112"
+              height="28"/></a
+          ><a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            ><span aria-hidden="true"></span><span aria-hidden="true"></span
+            ><span aria-hidden="true"></span
+          ></a>
+        </div>
+        <div class="navbar-end">
+          <a class="navbar-item">Home</a>
+          <div class="dropdown navbar-item ">
+            <div class="dropdown-trigger">
+              <button
+                class="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+              >
+                <span>en</span
+                ><span class="icon is-small"
+                  ><i class="fas fa-angle-down" aria-hidden="true"></i
+                ></span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item is-active">en</a
+                ><a href="#" class="dropdown-item ">id</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="columns">
+        <div class="column is-12">
+          <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+              <li><a href="/">Products</a></li>
+              <li class="is-active">
+                <a href="#" aria-current="page">Rustic Plastic Bacon</a>
+              </li>
+            </ul>
+          </nav>
+          <h3 class="title">Rustic Plastic Bacon</h3>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-5">
+          <figure class="image">
+            <img
+              alt="Rustic Plastic Bacon"
+              src="https://images.nike.com/is/image/DotCom/PDP_HERO/132170C_001_A_PREM/converse-chuck-taylor-all-star-leather-unisex-high-top-shoe.jpg"
+            />
+          </figure>
+        </div>
+        <div class="column is-5">
+          <div class="column has-text-weight-semibold has-text-dark is-size-4">
+            320.00
+          </div>
+          <div class="column">
+            Dolorem commodi id eveniet neque amet voluptatem ipsa.
+          </div>
+          <div class="column">
+            <a class="button is-primary is-uppercase">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
